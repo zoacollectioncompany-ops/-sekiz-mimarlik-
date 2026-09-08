@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sekiz Mimarlık — İnşaat, Mimarlık ve İç Mekân Tasarımı</title>
+<meta name="description" content="Sekiz Mimarlık; estetik tasarım vizyonunu güçlü mühendislik disipliniyle birleştirerek konut, ticari ve kurumsal projelerde anahtar teslim çözümler sunar.">
+<meta name="theme-color" content="#f2e9d8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f2e9d8;
+    --paper-2:#e8dac0;
+    --ink:#2c2013;
+    --ink-soft:#6b5c46;
+    --ink-faint:#9c8a6b;
+    --gold:#a97c3f;
+    --gold-light:#c99a5b;
+    --line: rgba(44,32,19,0.14);
+    --line-strong: rgba(44,32,19,0.32);
+    --wa:#25d366;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--ink);color:var(--paper);}
+  h1,h2,h3,h4{
+    font-family:'Fraunces',serif;
+    font-weight:400;
+    letter-spacing:-0.01em;
+    line-height:1.03;
+  }
+  em{font-style:italic;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1320px;margin:0 auto;padding:0 clamp(24px,5vw,64px);}
+  .eyebrow{
+    font-family:'Manrope',sans-serif;
+    font-size:11.5px;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--gold);
+    font-weight:600;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);display:inline-block;}
+
+  /* ===== Nav ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:26px 0;
+    transition:background .4s ease, padding .4s ease, border-color .4s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.scrolled{
+    background:rgba(242,233,216,0.92);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    padding:16px 0;
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{
+    font-family:'Manrope',sans-serif;
+    font-size:15px;
+    letter-spacing:0.03em;
+    display:flex;align-items:baseline;gap:9px;
+    font-weight:700;
+  }
+  .logo .mark{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:22px;color:var(--ink);line-height:0;
+  }
+  .logo small{
+    font-family:'Manrope',sans-serif;
+    font-size:9.5px;letter-spacing:0.24em;color:var(--ink-faint);
+    text-transform:uppercase;font-weight:600;
+    display:block;margin-top:3px;
+  }
+  .nav-links{display:flex;gap:38px;align-items:center;}
+  .nav-links a{
+    font-size:12.5px;letter-spacing:0.05em;color:var(--ink-soft);
+    text-transform:uppercase;font-weight:600;
+    position:relative;padding:4px 0;
+    transition:color .25s ease;
+  }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--ink);transition:width .3s ease;
+  }
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a:hover::after{width:100%;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:13px 24px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    font-size:12px;font-weight:600;letter-spacing:0.05em;
+    transition:all .3s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{background:var(--ink);color:var(--paper);}
+  .btn-solid{background:var(--ink);color:var(--paper);}
+  .btn-solid:hover{background:transparent;color:var(--ink);}
+  .menu-toggle{display:none;background:none;border:none;color:var(--ink);font-size:22px;cursor:pointer;}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding-top:130px;padding-bottom:0;
+  }
+  .hero-inner{position:relative;z-index:2;}
+  .hero h1{
+    font-size:clamp(40px,7.4vw,104px);
+    max-width:17ch;
+    font-weight:400;
+    margin-top:26px;
+    color:var(--ink);
+  }
+  .hero h1 em{color:var(--gold);}
+  .hero-sub{
+    max-width:520px;
+    margin-top:30px;
+    font-size:16.5px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    font-weight:400;
+  }
+  .hero-cta{display:flex;gap:16px;margin-top:46px;flex-wrap:wrap;}
+
+  /* stats bar */
+  .stats{
+    position:relative;z-index:2;
+    margin-top:100px;
+    border-top:1px solid var(--line);
+  }
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+  .stat{padding:34px 30px 40px;border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .num{
+    font-family:'Fraunces',serif;font-size:clamp(30px,3.6vw,48px);
+    color:var(--ink);font-weight:400;
+  }
+  .stat .label{
+    margin-top:10px;font-size:11px;letter-spacing:0.09em;
+    text-transform:uppercase;color:var(--ink-faint);font-weight:600;
+  }
+
+  /* ===== Section shells ===== */
+  section{position:relative;padding:130px 0;}
+  .section-index{
+    font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:24px;
+  }
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:40px;margin-bottom:72px;flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(32px,4.6vw,58px);max-width:14ch;color:var(--ink);}
+  .section-head p{max-width:340px;color:var(--ink-soft);font-size:14.5px;line-height:1.7;padding-bottom:6px;}
+
+  /* ===== Process (4 steps) ===== */
+  .process{background:var(--paper-2);}
+  .process-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border-top:1px solid var(--line);border-left:1px solid var(--line);
+  }
+  .process-item{
+    padding:42px 30px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+    transition:background .35s ease;
+  }
+  .process-item:hover{background:rgba(44,32,19,0.035);}
+  .process-item .pn{
+    font-family:'Fraunces',serif;font-style:italic;font-size:36px;color:var(--gold-light);
+  }
+  .process-item h3{font-size:19px;margin-top:24px;margin-bottom:12px;font-weight:400;color:var(--ink);}
+  .process-item p{font-size:13.5px;line-height:1.7;color:var(--ink-soft);}
+
+  /* ===== Kurumsal ===== */
+  .about-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:1px solid var(--line);}
+  .about-col{padding:50px 46px;}
+  .about-col:first-child{border-right:1px solid var(--line);}
+  .about-col .eyebrow{margin-bottom:22px;}
+  .about-col p{font-size:15px;line-height:1.85;color:var(--ink-soft);}
+  .about-col h3{font-size:24px;margin-bottom:18px;font-weight:400;color:var(--ink);}
+
+  .why-grid{
+    margin-top:2px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);
+  }
+  .why-item{background:var(--paper);padding:40px 36px;}
+  .why-item .wnum{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--gold);}
+  .why-item h4{font-size:19px;margin:18px 0 14px;font-weight:400;line-height:1.3;color:var(--ink);}
+  .why-item p{font-size:13.5px;line-height:1.7;color:var(--ink-soft);}
+
+  /* ===== Hizmetler ===== */
+  .services{background:var(--paper-2);}
+  .service-row{
+    display:grid;grid-template-columns:100px 1fr 1.3fr;
+    gap:32px;align-items:center;
+    padding:40px 0;
+    border-top:1px solid var(--line);
+    transition:padding-left .35s ease;
+  }
+  .service-row:last-child{border-bottom:1px solid var(--line);}
+  .service-row:hover{padding-left:14px;background:rgba(44,32,19,0.03);}
+  .service-row .sid{font-family:'Fraunces',serif;font-style:italic;font-size:28px;color:var(--gold-light);}
+  .service-row h3{font-size:25px;font-weight:400;color:var(--ink);}
+  .service-row p{font-size:14px;line-height:1.7;color:var(--ink-soft);}
+
+  /* ===== Portfolyo ===== */
+  .portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);}
+  .port-card{
+    position:relative;aspect-ratio:4/3;overflow:hidden;
+    background:var(--paper);
+    display:flex;flex-direction:column;justify-content:space-between;
+    padding:34px;
+  }
+  .port-card .pattern{
+    position:absolute;inset:0;opacity:1;pointer-events:none;
+    background-image:linear-gradient(var(--line) 1px, transparent 1px),linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:36px 36px;
+    -webkit-mask-image:radial-gradient(ellipse at 75% 25%, rgba(0,0,0,0.9), transparent 68%);
+    mask-image:radial-gradient(ellipse at 75% 25%, rgba(0,0,0,0.9), transparent 68%);
+    transition:transform .7s ease;
+  }
+  .port-card:hover .pattern{transform:scale(1.1);}
+  .port-card .pc-index{
+    position:relative;z-index:2;font-family:'Fraunces',serif;font-style:italic;
+    font-size:15px;color:var(--gold);
+  }
+  .port-card .pc-body{position:relative;z-index:2;}
+  .port-card .pc-tag{
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;margin-bottom:12px;
+  }
+  .port-card h3{font-size:26px;font-weight:400;max-width:15ch;color:var(--ink);}
+  .port-card .pc-line{
+    margin-top:14px;font-size:13px;color:var(--ink-soft);max-width:32ch;line-height:1.6;
+  }
+
+  /* ===== Hemen İletişime Geç (inverted CTA) ===== */
+  .quote{
+    background:radial-gradient(ellipse 80% 60% at 50% 0%, #3a2a17 0%, #241a0f 72%);
+    color:var(--paper);position:relative;overflow:hidden;
+  }
+  .quote .grid-bg{
+    position:absolute;inset:0;pointer-events:none;
+    background-image:linear-gradient(rgba(242,233,216,0.06) 1px, transparent 1px),linear-gradient(90deg, rgba(242,233,216,0.06) 1px, transparent 1px);
+    background-size:56px 56px;
+    -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 75%);
+    mask-image:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent 75%);
+  }
+  .contact-cta{position:relative;z-index:2;max-width:640px;margin:0 auto;text-align:center;}
+  .contact-cta .eyebrow{justify-content:center;color:var(--gold-light);margin-bottom:24px;}
+  .contact-cta .eyebrow::before{background:var(--gold-light);}
+  .contact-cta h2{font-size:clamp(34px,5vw,62px);color:var(--paper);}
+  .cta-sub{
+    margin:26px auto 0;max-width:46ch;font-size:15.5px;line-height:1.75;
+    color:rgba(242,233,216,0.7);
+  }
+  .cta-buttons{display:flex;justify-content:center;gap:16px;margin-top:46px;flex-wrap:wrap;}
+  .btn-lg{padding:17px 30px;font-size:12.5px;}
+  .btn svg{flex-shrink:0;}
+  .quote .btn{border-color:rgba(242,233,216,0.45);color:var(--paper);}
+  .quote .btn:hover{background:var(--paper);color:var(--ink);}
+  .quote .btn-solid{background:var(--gold);color:var(--ink);border-color:var(--gold);}
+  .quote .btn-solid:hover{background:transparent;color:var(--gold-light);border-color:var(--gold-light);}
+  .btn-whatsapp{border-color:rgba(37,211,102,0.5) !important;color:#8fe6ac !important;}
+  .btn-whatsapp:hover{background:var(--wa) !important;border-color:var(--wa) !important;color:var(--ink) !important;}
+
+  /* Floating WhatsApp button */
+  .wa-float{
+    position:fixed;right:24px;bottom:24px;z-index:200;
+    width:56px;height:56px;border-radius:50%;
+    background:var(--wa);color:#0e1a10;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 22px rgba(44,32,19,0.25);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .wa-float:hover{transform:scale(1.08);box-shadow:0 10px 26px rgba(44,32,19,0.32);}
+
+  /* ===== Contact / Footer ===== */
+  footer{
+    padding:100px 0 40px;
+    background:var(--paper);
+    border-top:1px solid var(--line);
+  }
+  .foot-grid{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;
+    padding-bottom:70px;
+  }
+  .foot-brand .logo{margin-bottom:22px;}
+  .foot-brand p{font-size:14px;color:var(--ink-soft);line-height:1.75;max-width:32ch;}
+  .foot-col h5{
+    font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:var(--ink-faint);
+    margin-bottom:20px;font-weight:600;
+  }
+  .foot-col a, .foot-col p{
+    display:block;font-size:14px;color:var(--ink-soft);margin-bottom:12px;
+    transition:color .25s ease;
+  }
+  .foot-col a:hover{color:var(--ink);}
+  .foot-bottom{
+    border-top:1px solid var(--line);padding-top:28px;
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+    font-size:12px;color:var(--ink-faint);
+  }
+
+  /* ===== Reveal animation ===== */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ===== Responsive ===== */
+  @media (max-width:980px){
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);}
+    .stat:nth-child(2){border-right:none;}
+    .stat{border-bottom:1px solid var(--line);}
+    .process-grid{grid-template-columns:repeat(2,1fr);}
+    .about-grid{grid-template-columns:1fr;}
+    .about-col:first-child{border-right:none;border-bottom:1px solid var(--line);}
+    .why-grid{grid-template-columns:1fr;}
+    .service-row{grid-template-columns:60px 1fr;}
+    .service-row p{grid-column:1/-1;}
+    .portfolio-grid{grid-template-columns:1fr;}
+    .cta-buttons{flex-direction:column;align-items:stretch;}
+    .btn-lg{justify-content:center;}
+    .wa-float{right:16px;bottom:16px;width:50px;height:50px;}
+    .foot-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:600px){
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#" class="logo">
+        <span class="mark">S</span>
+        <span>SEKİZ MİMARLIK<small>Yapı · Tasarım · Taahhüt</small></span>
+      </a>
+      <div class="nav-links">
+        <a href="#kurumsal">Kurumsal</a>
+        <a href="#hizmetler">Hizmetler</a>
+        <a href="#portfolyo">Portfolyo</a>
+        <a href="#teklif">İletişime Geç</a>
+        <a href="#iletisim">İletişim</a>
+      </div>
+      <a href="tel:+905325486304" class="btn">0532 548 63 04</a>
+      <button class="menu-toggle" id="menuToggle">☰</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="eyebrow">Sekiz Mimarlık — İnşaat &amp; Mimarlık</div>
+    <h1 class="reveal">Hayalleri Mimari Gerçekliğe, <em>Yapıları Sanata</em> Dönüştürüyoruz.</h1>
+    <p class="hero-sub reveal">Sekiz Mimarlık; estetik tasarım vizyonunu güçlü mühendislik disipliniyle birleştirerek konut, ticari ve kurumsal projelerde anahtar teslim çözümler sunar.</p>
+    <div class="hero-cta reveal">
+      <a href="tel:+905325486304" class="btn btn-solid">Hemen İletişime Geç</a>
+      <a href="#portfolyo" class="btn">Projelerimizi İncele</a>
+    </div>
+  </div>
+
+  <div class="wrap stats reveal">
+    <div class="stats-grid">
+      <div class="stat"><div class="num">150+</div><div class="label">Tamamlanan Proje</div></div>
+      <div class="stat"><div class="num">45.000 m²</div><div class="label">Tasarım &amp; Uygulama</div></div>
+      <div class="stat"><div class="num">%100</div><div class="label">Zamanında Teslimat</div></div>
+      <div class="stat"><div class="num">%100</div><div class="label">Müşteri Memnuniyeti</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>4 Adımda Proje Yönetim Süreci</h2>
+      <p>Keşiften anahtar teslime, her aşamada aynı disiplin ve şeffaflıkla ilerliyoruz.</p>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="process-grid reveal">
+      <div class="process-item">
+        <div class="pn">01</div>
+        <h3>Keşif &amp; Analiz</h3>
+        <p>Mekânın yerinde incelenmesi, statik ve mimari ihtiyaçların tespit edilerek bütçe planının çıkarılması.</p>
+      </div>
+      <div class="process-item">
+        <div class="pn">02</div>
+        <h3>Konsept &amp; Tasarım</h3>
+        <p>Kullanıcı odaklı, estetik ve fonksiyonel mimari projelerin görselleştirilmesi.</p>
+      </div>
+      <div class="process-item">
+        <div class="pn">03</div>
+        <h3>Şantiye &amp; Uygulama</h3>
+        <p>Deneyimli teknik kadromuz gözetiminde, yüksek kaliteli malzeme ve hassas işçilikle şantiye süreci.</p>
+      </div>
+      <div class="process-item">
+        <div class="pn">04</div>
+        <h3>Anahtar Teslim</h3>
+        <p>Belirlenen bütçe ve takvime sadık kalınarak kusursuz şekilde mekânın teslime hazır hale getirilmesi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= KURUMSAL ================= -->
+<section id="kurumsal">
+  <div class="wrap">
+    <div class="section-index reveal">02 — Kurumsal</div>
+    <div class="section-head reveal">
+      <h2>Güven ve Prestij Üzerine İnşa Edildik.</h2>
+    </div>
+
+    <div class="about-grid reveal">
+      <div class="about-col">
+        <div class="eyebrow">Hakkımızda</div>
+        <h3>Estetik ile mühendislik disiplininin buluştuğu yer.</h3>
+        <p>Sekiz Mimarlık'ın kuruluş felsefesi, estetik anlayışı ve mühendislik disiplini üzerine inşa edilmiştir. Sektördeki yenilikçi yaklaşımımızla, her projede sadece mekân değil, yaşam kalitesini artıran prestijli alanlar tasarlıyoruz.</p>
+      </div>
+      <div class="about-col">
+        <div class="eyebrow">Mimari Yaklaşımımız</div>
+        <h3>Zamansız, insan odaklı ve sürdürülebilir.</h3>
+        <p>Fonksiyonel, sürdürülebilir, modern ve insan odaklı mekanlar tasarlamak temel önceliğimizdir. Estetiği mühendislik gerçekleriyle harmanlayarak zamansız ve değer yaratan mimari çözümler sunuyoruz.</p>
+      </div>
+    </div>
+
+    <div class="why-grid reveal">
+      <div class="why-item">
+        <div class="wnum">Neden Sekiz Mimarlık — 01</div>
+        <h4>Zamanında ve Bütçe Dışına Çıkmayan Teslimat</h4>
+        <p>Tüm süreçleri hassas takvim ve bütçe planlamasına sadık kalarak sıfır gecikme riskiyle tamamlıyoruz.</p>
+      </div>
+      <div class="why-item">
+        <div class="wnum">Neden Sekiz Mimarlık — 02</div>
+        <h4>Tek Noktadan Tüm İnşaat &amp; Dekorasyon Yönetimi</h4>
+        <p>Proje çiziminden kaba inşaata, iç mekân dekorasyonundan son detay teslimine kadar tüm süreçleri tek muhatap güvencesiyle yönetiyoruz.</p>
+      </div>
+      <div class="why-item">
+        <div class="wnum">Neden Sekiz Mimarlık — 03</div>
+        <h4>Saha Güvenliği ve İleri Ekipman Altyapısı</h4>
+        <p>Uluslararası iş güvenliği standartlarına tam uyum ve modern teknolojik ekipman altyapımızla şantiyelerimizde kusursuz uygulama sağlıyoruz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HİZMETLER ================= -->
+<section id="hizmetler" class="services">
+  <div class="wrap">
+    <div class="section-index reveal">03 — Hizmetler</div>
+    <div class="section-head reveal">
+      <h2>Hizmetlerimiz</h2>
+      <p>Temelden son detaya, tek çatı altında uçtan uca çözüm.</p>
+    </div>
+
+    <div class="reveal">
+      <div class="service-row">
+        <div class="sid">01</div>
+        <h3>İnşaat &amp; Taahhüt</h3>
+        <p>Kaba ve ince inşaat işleri, statik çözümler, konut ve ticari yapıların temelden çatıya anahtar teslim yapımı.</p>
+      </div>
+      <div class="service-row">
+        <div class="sid">02</div>
+        <h3>Mimarlık &amp; Konsept Tasarım</h3>
+        <p>Mimari proje çizimleri, ruhsat süreçleri, 3D görselleştirme, sanal tur ve konsept geliştirme.</p>
+      </div>
+      <div class="service-row">
+        <div class="sid">03</div>
+        <h3>Yapı Dekorasyon &amp; İç Mekân</h3>
+        <p>Villa, ofis, restoran ve konut iç mekân tasarımları, özel imalat mobilya, aydınlatma ve akustik çözümler.</p>
+      </div>
+      <div class="service-row">
+        <div class="sid">04</div>
+        <h3>Anahtar Teslim Renovasyon</h3>
+        <p>Eski yapıların modernizasyonu, tesisat yenileme, cephe giydirme ve sıfır riskli dönüşüm paketleri.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PORTFOLYO ================= -->
+<section id="portfolyo">
+  <div class="wrap">
+    <div class="section-index reveal">04 — Portfolyo</div>
+    <div class="section-head reveal">
+      <h2>Portfolyo &amp; Projeler</h2>
+      <p>Konuttan ticari alana, dört ana başlıkta hayata geçirdiğimiz mekânlar.</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="portfolio-grid reveal">
+      <div class="port-card">
+        <div class="pattern"></div>
+        <div class="pc-index">01</div>
+        <div class="pc-body">
+          <div class="pc-tag">Konut &amp; Villa</div>
+          <h3>Konut &amp; Villa Projeleri</h3>
+          <p class="pc-line">Modern mimari hatlara sahip, yüksek konforlu müstakil yaşam alanları ve rezidans daireleri.</p>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="pattern"></div>
+        <div class="pc-index">02</div>
+        <div class="pc-body">
+          <div class="pc-tag">Ticari &amp; Ofis</div>
+          <h3>Ticari &amp; Ofis Alanları</h3>
+          <p class="pc-line">Kurumsal kimliği yansıtan verimli çalışma alanları, karşılama salonları ve toplantı konseptleri.</p>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="pattern"></div>
+        <div class="pc-index">03</div>
+        <div class="pc-body">
+          <div class="pc-tag">Konsept Mekân</div>
+          <h3>Restoran, Kafe &amp; Mağaza Tasarımları</h3>
+          <p class="pc-line">Müşteri deneyimini odağa alan, marka değerini yükselten konsept mekanlar.</p>
+        </div>
+      </div>
+      <div class="port-card">
+        <div class="pattern"></div>
+        <div class="pc-index">04</div>
+        <div class="pc-body">
+          <div class="pc-tag">Renovasyon</div>
+          <h3>Tam Kapsamlı Renovasyon &amp; Dönüşüm</h3>
+          <p class="pc-line">Tarihi veya yıpranmış yapıların çağdaş teknoloji ve estetikle yeniden doğuşu.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HEMEN İLETİŞİME GEÇ ================= -->
+<section id="teklif" class="quote">
+  <div class="grid-bg"></div>
+  <div class="wrap">
+    <div class="contact-cta reveal">
+      <div class="eyebrow">Projeniz mi var?</div>
+      <h2>Hemen İletişime Geçin.</h2>
+      <p class="cta-sub">Keşif, fiyat teklifi ya da danışmanlık için bizi arayın ya da WhatsApp'tan yazın — aynı gün dönüş yapalım.</p>
+      <div class="cta-buttons">
+        <a href="tel:+905325486304" class="btn btn-solid btn-lg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Hemen Ara — 0532 548 63 04
+        </a>
+        <a href="https://wa.me/905325486304?text=Merhaba%2C%20Sekiz%20Mimarl%C4%B1k%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="btn btn-whatsapp btn-lg">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.858.503 3.646 1.457 5.223L2 22l4.906-1.435a10.01 10.01 0 0 0 5.098 1.394h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.486 17.526 2 12.004 2zm0 18.19h-.003a8.16 8.16 0 0 1-4.166-1.14l-.299-.177-3.09.904.926-3.013-.195-.31a8.15 8.15 0 0 1-1.257-4.44c0-4.51 3.673-8.183 8.187-8.183 2.186 0 4.24.852 5.786 2.399a8.13 8.13 0 0 1 2.397 5.79c-.001 4.512-3.674 8.184-8.286 8.184z"/></svg>
+          WhatsApp'tan Yaz
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= İLETİŞİM / FOOTER ================= -->
+<footer id="iletisim">
+  <div class="wrap">
+    <div class="foot-grid reveal">
+      <div class="foot-brand">
+        <a href="#" class="logo">
+          <span class="mark">S</span>
+          <span>SEKİZ MİMARLIK<small>Yapı · Tasarım · Taahhüt</small></span>
+        </a>
+        <p>Ofis &amp; Merkez Şantiye Yönetimi — Sekiz Mimarlık Genel Merkez. Estetik tasarım vizyonunu güçlü mühendislik disipliniyle birleştiren anahtar teslim çözümler.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Kurumsal</h5>
+        <a href="#kurumsal">Hakkımızda</a>
+        <a href="#hizmetler">Hizmetlerimiz</a>
+        <a href="#portfolyo">Portfolyo</a>
+      </div>
+      <div class="foot-col">
+        <h5>İletişim Kanalları</h5>
+        <a href="tel:+905325486304">0532 548 63 04</a>
+        <a href="mailto:info@sekizmimarlik.com">E-Posta</a>
+        <a href="https://wa.me/905325486304" target="_blank" rel="noopener">WhatsApp'tan Yaz</a>
+      </div>
+      <div class="foot-col">
+        <h5>Ofis</h5>
+        <p>Sekiz Mimarlık Genel Merkez</p>
+        <p>Merkez Şantiye Yönetimi</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© <span id="year"></span> Sekiz Mimarlık. Tüm hakları saklıdır.</div>
+      <div class="made">Yapıları sanata dönüştürüyoruz.</div>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/905325486304?text=Merhaba%2C%20Sekiz%20Mimarl%C4%B1k%20hakk%C4%B1nda%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp'tan yaz">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2C6.486 2 2 6.486 2 12.004c0 1.858.503 3.646 1.457 5.223L2 22l4.906-1.435a10.01 10.01 0 0 0 5.098 1.394h.004c5.518 0 10.004-4.486 10.004-10.004C22.012 6.486 17.526 2 12.004 2zm0 18.19h-.003a8.16 8.16 0 0 1-4.166-1.14l-.299-.177-3.09.904.926-3.013-.195-.31a8.15 8.15 0 0 1-1.257-4.44c0-4.51 3.673-8.183 8.187-8.183 2.186 0 4.24.852 5.786 2.399a8.13 8.13 0 0 1 2.397 5.79c-.001 4.512-3.674 8.184-8.286 8.184z"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.querySelector('.nav-links');
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.style.display === 'flex';
+    navLinks.style.display = open ? 'none' : 'flex';
+    navLinks.style.cssText += open ? '' : 'position:fixed;top:64px;left:0;right:0;background:#f2e9d8;flex-direction:column;padding:28px;gap:22px;border-bottom:1px solid rgba(44,32,19,0.13);';
+  });
+</script>
+
+</body>
+</html>
